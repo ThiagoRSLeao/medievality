@@ -8,6 +8,19 @@ import java.util.Scanner;
 class Aggregation {
     public static void main(String[] args){
         System.out.println("Iniciando combate!");
+
+        /*
+        TODO 
+        Automatizar criação de personagems, permitir escolher entre o array padrão. 
+        Permitir o agrupamento deles.
+        Gerar equipamentos (Armaduras, arcos e escudos).
+        Criar Magias, escolas de magia e etc.
+        Permitir outras ações alem de atacar, como consumir poções, fugir ou mover-se.
+        Adicionar combates consecutivos, como npcs (story line).
+        Adicionar progressão por nível.
+        Adicionar efeitos positivos/negativos em itens de maneira aleatória.
+        Adicionar IA para os inimigos.
+        */
         Character player1 = new Character("Hadryk", 15, 15);
         Weapon dagger = Weapon.forgeSimpleWeapon(1, "Black Dagger");
         player1.wieldWeapon(dagger);
