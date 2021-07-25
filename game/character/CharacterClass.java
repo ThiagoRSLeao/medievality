@@ -3,14 +3,13 @@ package game.character;
 public class CharacterClass {
 
     private ClassStats classStats;
-
+    /*
     public CharacterClass(int hpl, int mpl, int spl){
         this.classStats = new ClassStats();
         this.classStats.hpPerLevel = hpl;
         this.classStats.manaPerLevel = mpl;
         this.classStats.shieldPerLevel = spl;
 
-        this.classStats.ac = 10;
         this.classStats.shield = 0;
         this.classStats.hp = 10;
         this.classStats.mana = 0;

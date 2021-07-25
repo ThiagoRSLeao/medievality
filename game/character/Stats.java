@@ -2,38 +2,69 @@ package game.character;
 
 
 public class Stats {
-    
-    protected int ac;
-    protected int shield;
-    protected int hp;
-    protected int mana;
+    private String origin;
+    protected int evasion;
+    protected int maxShield;
+    protected int maxHp;
+    protected int maxMana;
     protected double speed;
     protected int profBonus;
 
-    protected int actionsPerTurn;
-    protected int minorActionsPerTurn;
+    protected int physicalDamage;
+    protected int magicalDamage;
+    protected int spiritualDamage;
 
+    protected int criticalChance;
+    protected int criticalDamage;
+
+    protected int actionsPerTurn;
     public Stats(){
-        this.ac = 0;
-        this.shield = 0;
-        this.hp = 0;
-        this.mana = 0;
+        this.origin = "";
+        this.evasion = 0;
+        this.maxShield = 0;
+        this.maxHp = 0;
+        this.maxMana = 0;
         this.speed = 0;
         this.profBonus = 0;
-        this.actionsPerTurn = 1;
-        this.minorActionsPerTurn = 1;
+
+        this.physicalDamage = 0;
+        this.magicalDamage = 0;
+        this.spiritualDamage = 0;
+    
+        this.criticalChance = 0;
+        this.criticalDamage = 0;
+    
+        this.actionsPerTurn = 0;
     }
-    public void setAc(int ac) {
-        this.ac = ac;
+    public Stats(String name){
+        this.origin = name;
+        this.evasion = 0;
+        this.maxShield = 0;
+        this.maxHp = 0;
+        this.maxMana = 0;
+        this.speed = 0;
+        this.profBonus = 0;
+
+        this.physicalDamage = 0;
+        this.magicalDamage = 0;
+        this.spiritualDamage = 0;
+    
+        this.criticalChance = 0;
+        this.criticalDamage = 0;
+    
+        this.actionsPerTurn = 0;
     }
-    public void setShield(int shield) {
-        this.shield = shield;
+    public void setOrigin(String origin) {
+        this.origin = origin;
     }
-    public void setHp(int hp) {
-        this.hp = hp;
+    public void setMaxShield(int maxShield) {
+        this.maxShield = maxShield;
     }
-    public void setMana(int mana) {
-        this.mana = mana;
+    public void setMaxHp(int maxHp) {
+        this.maxHp = maxHp;
+    }
+    public void setMaxMana(int maxMana) {
+        this.maxMana = maxMana;
     }
     public void setSpeed(double speed) {
         this.speed = speed;
@@ -41,23 +72,32 @@ public class Stats {
     public void setProfBonus(int profBonus) {
         this.profBonus = profBonus;
     }
+    public void setCriticalChance(int criticalChance) {
+        this.criticalChance = criticalChance;
+    }
+    public void setCriticalDamage(int criticalDamage) {
+        this.criticalDamage = criticalDamage;
+    }
+    public void setSpiritualDamage(int spiritualDamage) {
+        this.spiritualDamage = spiritualDamage;
+    }
+    public void setMagicalDamage(int magicalDamage) {
+        this.magicalDamage = magicalDamage;
+    }
+    public void setPhysicalDamage(int physicalDamage) {
+        this.physicalDamage = physicalDamage;
+    }
     public void setActionsPerTurn(int actionsPerTurn) {
         this.actionsPerTurn = actionsPerTurn;
     }
-    public void setMinorActionsPerTurn(int minorActionsPerTurn) {
-        this.minorActionsPerTurn = minorActionsPerTurn;
+    public int getMaxShield() {
+        return maxShield;
     }
-    public int getAc() {
-        return ac;
+    public int getMaxHp() {
+        return maxHp;
     }
-    public int getShield() {
-        return shield;
-    }
-    public int getHp() {
-        return hp;
-    }
-    public int getMana() {
-        return mana;
+    public int getMaxMana() {
+        return maxMana;
     }
     public double getSpeed() {
         return speed;
@@ -65,10 +105,36 @@ public class Stats {
     public int getProfBonus() {
         return profBonus;
     }
+    public int getCriticalChance() {
+        return criticalChance;
+    }
+    public int getCriticalDamage() {
+        return criticalDamage;
+    }
+    public int getSpiritualDamage() {
+        return spiritualDamage;
+    }
+    public int getMagicalDamage() {
+        return magicalDamage;
+    }
+    public int getPhysicalDamage() {
+        return physicalDamage;
+    }
     public int getActionsPerTurn() {
         return actionsPerTurn;
     }
-    public int getMinorActionsPerTurn() {
-        return minorActionsPerTurn;
-    }    
+    public void showStats(){    
+        System.out.println("Status de "+ this.origin);
+        System.out.println("Vida: " + this.maxHp);
+        System.out.println("Mana: " + this.maxMana);
+        System.out.println("Shield: " + this.maxShield);
+        System.out.println("Evasão: " + this.evasion);
+        System.out.println("Velocidade: " + this.speed);
+        System.out.println("Proficiência: " + this.profBonus);
+        System.out.println("Dano Físico: " + this.physicalDamage);
+        System.out.println("Dano Mágico: " + this.magicalDamage);
+        System.out.println("Chance de Crítico: " + this.criticalChance);
+        System.out.println("Dano Crítico: " + this.criticalDamage);
+        System.out.println("Pontos de Ação: " + this.actionsPerTurn);
+    }
 }

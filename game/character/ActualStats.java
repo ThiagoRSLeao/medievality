@@ -4,7 +4,7 @@ import java.util.Set;
 
 public class ActualStats extends Stats{
 
-    public ActualStats(ArrayList<Stats> stats) {
+    public ActualStats() {
         for(int counter = 0; counter < stats.size(); counter++)
         {
             this.ac += stats.get(counter).ac;

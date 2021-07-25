@@ -16,47 +16,42 @@ import game.mechanics.Combat;
 public class Character{ //abstract class Character
 
     private String name;
-    private CharacterClass charClass;
+    private CharacterClass characterClass;
+    private StatsManager stats;
+    private int hp;
+    private int mana;
+    private int shield;
 
-    private Stats baseStats;
-    private ClassStats classStats;
-    private ArrayList<Stats> effectedBy;
 
-    private ActualStats maxStats;
-    private ActualStats trueStats;
-
+    private CharacterAttributes attributes;
     private Equipment equipment;
     private Inventory inventory;    
-    private CharacterAttributes attributes;
 
     private Combat combatantAt;
     //private List <Weapon> weapons;
 
-    public Character(String name, CharacterClass cc){
-        this.baseStats = new Stats();
-        this.attributes = new CharacterAttributes(); 
-        this.charClass = cc;
-        this.charClass.setClassStats(this.classStats);
-
-        this.allStats = new ArrayList<Stats>();
-
+    public Character(String name){
+        this.stats = new StatsManager();
 
         this.name = name;
-
+        
+        this.characterClass = null;
+        this.attributes = new CharacterAttributes(); 
         this.equipment = new Equipment(this);
         this.inventory = new Inventory(10, 25 + (this.getModifier("STR") * 3));
 
         this.equipment.setEquip(new Weapon("Punch", "T", "Fists", "STR", 1, 1));
-        System.out.println("Personagem criado! Seu nome eh " + this.name + ", possui "+ this.hp+" pontos de vida e "+ this.ac +" de armadura." + this.equipment.getWielding().getName());
+        System.out.println("Personagem criado! Seu nome eh " + this.name + ", possui "+ this.hp+" pontos de vida. " + this.equipment.getWielding().getName());
         //this.weapons = new ArrayList<Weapon>();
         System.out.println("Carregando atualmente " + this.inventory.getMaxWeight() + " de peso com " + this.inventory.getMaxSlots() + " tipos de item diferentes. ");
     }
 
     public Character(String name, int[] atts ){
-        this.attributes = new CharacterAttributes(atts); 
+        this.stats = new StatsManager();
 
         this.name = name;
 
+        this.attributes = new CharacterAttributes(atts); 
         this.equipment = new Equipment(this);
         this.inventory = new Inventory(10, 25 + (this.getModifier("STR") * 3));
 
@@ -79,9 +74,9 @@ public class Character{ //abstract class Character
         this.changeHp(-dmg);
     }
     public void changeHp(int value){
-        this.baseStats.hp += value;
-        if(this.actualStats.hp > this.getMaxHp()) this.actualStats.hp = this.getMaxHp();
-        else if(this.actualStats.hp <= 0) this.setDead();
+        this.hp += value;
+        if(this.hp > this.getMaxHp()) this.hp = this.getMaxHp();
+        else if(this.hp <= 0) this.setDead();
     }
 
     //Combat
@@ -92,7 +87,7 @@ public class Character{ //abstract class Character
         this.combatantAt = combatantAt;
     }
     public boolean receiveAttack(int hit, int damage){
-        if(this.baseStats.ac > hit){
+        if(this.stats.getEvasion() > hit){
             System.out.println(this.name + " defendeu o golpe (Acerto: " + hit + ", Armadura: "+this.ac+")");
             return false;
         }
@@ -152,14 +147,14 @@ public class Character{ //abstract class Character
 
     //Stats    
     public int getMaxHp() {
-        return this.actualStats.hp;
+        return this.stats.getMaxHp();
     }
     public int getHp() {
-        return this.actualStats.hp;
+        return this.hp;
     }
     //Class
-    public void setCharClass(CharacterClass cc){
+    /*public void setCharClass(CharacterClass cc){
         this.charClass = cc;
         this.charClass.setClassStats(this.classStats);
-    }
+    }*/
 }
