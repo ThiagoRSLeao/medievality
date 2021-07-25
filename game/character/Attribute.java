@@ -46,4 +46,12 @@ public class Attribute{
     public String getShortName() {
         return this.shortName;
     }
+    public void setAttribute(int val){    
+        this.value = val;    
+        this.calcMod();
+    }
+    public void changeAttribute(int val){    
+        this.value += val;    
+        this.calcMod();
+    }
 }
