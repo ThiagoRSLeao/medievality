@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.event.MouseInputAdapter;
 import javax.swing.event.MouseInputListener;
 
 import game.item.Backpack;
@@ -21,9 +22,11 @@ import game.item.attachable.Lantern;
 import game.item.equipment.Weapon;
 import game.character.Character;
 import game.mechanics.Combat; 
-import game.meta.DataEnhancement; 
+import game.meta.DataEnhancement;
 
 public class GameGUI {
+    static private int mousePressedX;
+    static private int mousePressedY;
     public static void main(String[] args) {
         System.out.println("Iniciando!");
 
@@ -67,9 +70,21 @@ public class GameGUI {
         inventoryPanel.setSize(new Dimension(600, 450));
         inventoryPanel.setLocation(200,100);
         inventoryPanel.setBorder(BorderFactory.createLineBorder(Color.gray));
+        inventoryPanel.addMouseListener(new MouseInputAdapter(){
+            
+            @Override
+            public void mousePressed(MouseEvent e) {
+                // TODO Auto-generated method stub
+                mousePressedX = e.getX();
+                mousePressedY = e.getY();
+            }
+
+        });
         inventoryPanel.addMouseMotionListener(new MouseMotionAdapter() {
-            public void mouseDragged(MouseEvent evt) {
-                inventoryPanel.setLocation(MouseInfo.getPointerInfo().getLocation());
+            public void mouseDragged(MouseEvent e) {
+                int x = (int) MouseInfo.getPointerInfo().getLocation().getX() - mousePressedX;
+                int y = (int) MouseInfo.getPointerInfo().getLocation().getY() - mousePressedY;
+                inventoryPanel.setLocation(x, y);
             }
         });
 
@@ -126,7 +141,7 @@ public class GameGUI {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                inventoryPanel.setVisible(true);
+                inventoryPanel.setVisible(!inventoryPanel.isVisible());
             }
 
         });
@@ -137,6 +152,7 @@ public class GameGUI {
 
         frame.add(inventoryPanel);
         frame.add(accessMenu);
+        inventoryPanel.setVisible(false);
         frame.setVisible(true);
         //f.getContentPane().add(scroll);
         //f.pack();
