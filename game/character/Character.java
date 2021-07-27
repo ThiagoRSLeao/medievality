@@ -34,7 +34,7 @@ public class Character{ //abstract class Character
         this.stats = new StatsManager();
 
         this.name = name;
-        
+
         this.characterClass = null;
         this.attributes = new CharacterAttributes(); 
         this.equipment = new Equipment(this);
@@ -57,7 +57,7 @@ public class Character{ //abstract class Character
 
 
         this.equipment.setEquip(new Weapon("Punch", "T", "Fists", "STR", 1, 1));
-        System.out.println("Personagem criado! Seu nome eh " + this.name + ", possui "+ this.hp+" pontos de vida e "+ this.ac +" de armadura." + this.equipment.getWielding().getName());
+        System.out.println("Personagem criado! Seu nome eh " + this.name + ", possui "+ this.hp+" pontos de vida." + this.equipment.getWielding().getName());
         //this.weapons = new ArrayList<Weapon>();
         System.out.println("Capacidade de carga é " + this.inventory.getMaxWeight() + " de peso com " + this.inventory.getMaxSlots() + " tipos de item diferentes. ");
     }
@@ -88,7 +88,7 @@ public class Character{ //abstract class Character
     }
     public boolean receiveAttack(int hit, int damage){
         if(this.stats.getEvasion() > hit){
-            System.out.println(this.name + " defendeu o golpe (Acerto: " + hit + ", Armadura: "+this.ac+")");
+            System.out.println(this.name + " defendeu o golpe (Acerto: " + hit + ")");
             return false;
         }
         else{
